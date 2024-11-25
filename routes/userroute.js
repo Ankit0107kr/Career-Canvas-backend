@@ -4,7 +4,7 @@ import bcrypt from "bcryptjs"; // For password hashing
 import jwt from "jsonwebtoken"; // For token-based authentication
 
 const router = express.Router();
-const SECRET_KEY = process.env.SECRET_KEY; // Replace with a secure secret key
+const SECRET_KEY = process.env.SECRET_KEY  || 'ankit0107kr'; // Replace with a secure secret key
 
 // Test Route
 router.get("/", (req, res) => {
@@ -55,7 +55,7 @@ router.post("/login", async (req, res) => {
 
     // Generate a token
     const token = jwt.sign({ id: user._id, email: user.email }, SECRET_KEY, {
-      expiresIn: "1h",
+      expiresIn: "2h",
     });
 
     res.status(200).json({ message: "Login successful", token, user });
